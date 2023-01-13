@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         setContentView(R.layout.activity_main);
         searchRecipeInput = findViewById(R.id.searchRecipeInput);
         recyclerView = findViewById(R.id.recyclerView);
-
         // Greeting dialog
         handleGreetingDialog();
     }
@@ -59,9 +58,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             number = jsonObject.getInt("number");
             if (totalResults == 0)
                 Toast.makeText(this, "Could not find any recipe with that title", Toast.LENGTH_SHORT).show();
-            else{
+            else {
                 int n;
-                if(totalResults <= 10)
+                if (totalResults <= 10)
                     n = totalResults;
                 else n = number;
                 for (int i = 0; i < n; i++) {
@@ -71,7 +70,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                     Long id = jsonArray.getJSONObject(i).getLong("id");
                     Recipe recipe = new Recipe(id, title, image);
                     recipes.add(recipe);
-                }}
+                }
+            }
         } catch (JSONException | InterruptedException | IOException e) {
             e.printStackTrace();
             Toast.makeText(this, "Something went wrong. Try again.", Toast.LENGTH_SHORT).show();
