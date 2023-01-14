@@ -8,15 +8,17 @@ public class Recipe {
     private String image;
     private String readyInMinutes;
     private List<String> ingredients;
-    private List<String> steps;
+    private List<String > instructions;
+    private String sourceURL;
 
-    public Recipe(Long id, String title, String image, String readyInMinutes, List<String> ingredients, List<String> steps) {
+    public Recipe(Long id, String title, String image, String readyInMinutes, List<String> ingredients, List<String> instructions, String sourceURL) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.readyInMinutes = readyInMinutes;
         this.ingredients = ingredients;
-        this.steps = steps;
+        this.instructions = instructions;
+        this.sourceURL = sourceURL;
     }
 
     public Recipe(Long id, String title, String image) {
@@ -65,11 +67,28 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public List<String> getSteps() {
-        return steps;
+    public List<String> getInstructions() {
+        return instructions;
     }
 
-    public void setSteps(List<String> steps) {
-        this.steps = steps;
+    public void setInstructions(List<String>instructions) {
+        this.instructions = instructions;
+    }
+
+    public String getSourceURL() {
+        return sourceURL;
+    }
+
+    public void setSourceURL(String sourceURL) {
+        this.sourceURL = sourceURL;
+    }
+
+    public String ingredientsToString(){
+        String allIngredients = "Ingredients: \n";
+        for (int i = 0; i < ingredients.size(); i++) {
+            allIngredients += ingredients.get(i) + "\n";
+        }
+        //allIngredients += ingredients.get(ingredients.size() - 1) + ".";
+        return allIngredients;
     }
 }
