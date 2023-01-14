@@ -145,4 +145,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         intent.putExtra("image", recipes.get(position).getImage());
         startActivity(intent);
     }
+
+    public void onClickNextButton(View view) {
+        Intent intent = new Intent(this, AdvancedSearchActivity.class);
+        startActivity(intent);
+    }
 }
