@@ -120,15 +120,35 @@ public class HttpRequest {
     }
 
 
-    public void getRecipeWithQuery(String URL, List<String> params) {
+    public String getRecipesByURL(String URL) throws InterruptedException, IOException {
+        client = new OkHttpClient();
+        latch = new CountDownLatch(1);
+        responseRef = new AtomicReference<>();
 
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().addHeader("x-api-key", "b80a18baa3e6421cb788bf679ed660b9").url(URL).build();
-        try (Response response = client.newCall(request).execute()) {
-            String responseBody = response.body().string();
-            Log.i(TAG, "getRecipeWithQuery: " + responseBody);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Request request = new Request.Builder().url(URL).addHeader("x-api-key", "b80a18baa3e6421cb788bf679ed660b9").build();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        // Handle failure
+                        Log.e(TAG, "onFailure: Something went wrong");
+                        latch.countDown();
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        responseRef.set(response);
+                        latch.countDown();
+                    }
+                });
+            }
+        });
+        thread.start();
+        latch.await();
+        String response = Objects.requireNonNull(responseRef.get().body()).string();
+        Log.i(TAG, "getRecipe: response: " + response);
+        return response;
     }
 }

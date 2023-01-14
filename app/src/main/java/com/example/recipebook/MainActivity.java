@@ -141,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Log.i(TAG, "onItemClick: position " + position);
         Intent intent = new Intent(this, RecipeActivity.class);
         intent.putExtra("id", recipes.get(position).getId());
-        intent.putExtra("title", recipes.get(position).getTitle());
         intent.putExtra("image", recipes.get(position).getImage());
+        intent.putExtra("activity", "MainActivity");
         startActivity(intent);
     }
 

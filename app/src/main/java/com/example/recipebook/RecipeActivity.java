@@ -19,6 +19,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RecipeActivity extends AppCompatActivity {
     ImageView imageView;
@@ -26,6 +27,7 @@ public class RecipeActivity extends AppCompatActivity {
     ListView ingredientsListView, stepsListView;
     ArrayAdapter<String> arrayAdapter, arrayAdapter2;
     ArrayList<Recipe> recipes;
+    String activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +35,8 @@ public class RecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe);
 
         Long id = getIntent().getLongExtra("id", 0);
-        String title = getIntent().getStringExtra("title");
         String image = getIntent().getStringExtra("image");
+        activity = getIntent().getStringExtra("activity");
 
         titleTextView = findViewById(R.id.titleTextView);
         imageView = findViewById(R.id.recipeImageView);
@@ -47,8 +49,10 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     public void onBackClick(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("back", true);
+        Intent intent;
+        if(Objects.equals(activity, "MainActivity"))
+            intent = new Intent(this, MainActivity.class);
+        else intent = new Intent(this, AdvancedSearchActivity.class);
         startActivity(intent);
     }
 
