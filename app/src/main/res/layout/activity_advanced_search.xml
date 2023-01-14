@@ -25,7 +25,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.96"
-        app:srcCompat="@drawable/left" />
+        app:srcCompat="@drawable/left"
+        app:tint="?attr/colorOnSecondary"/>
 
     <ImageButton
         android:id="@+id/nextButton2"
@@ -42,7 +43,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.96"
-        app:srcCompat="@drawable/next" />
+        app:srcCompat="@drawable/next"
+        app:tint="?attr/colorOnSecondary"/>
 
     <TextView
         android:id="@+id/helloTextView2"

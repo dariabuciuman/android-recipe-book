@@ -47,7 +47,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976"
-        app:srcCompat="@drawable/left" />
+        app:srcCompat="@drawable/left"
+        app:tint="?attr/colorOnSecondary"/>
 
     <TextView
         android:id="@+id/minutesTextView"
@@ -66,7 +67,10 @@
         android:id="@+id/URLTextView"
         android:layout_width="329dp"
         android:layout_height="31dp"
+        android:autoLink="web"
+        android:linksClickable="true"
         android:text="SourceURL"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

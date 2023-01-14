@@ -46,7 +46,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.127"
-        app:srcCompat="@drawable/search__2_" />
+        app:srcCompat="@drawable/search__2_"
+        app:tint="?attr/colorOnSecondary" />
 
     <TextView
         android:id="@+id/textView"
@@ -73,22 +74,22 @@
         android:onClick="onClickNextButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96"
-        app:srcCompat="@drawable/next" />
+        app:layout_constraintVertical_bias="0.961"
+        app:srcCompat="@drawable/next"
+        app:tint="?attr/colorOnSecondary" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
-        android:layout_height="466dp"
+        android:layout_height="519dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588" />
+        app:layout_constraintVertical_bias="0.636" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

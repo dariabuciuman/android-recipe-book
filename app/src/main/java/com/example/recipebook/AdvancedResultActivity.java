@@ -49,7 +49,7 @@ public class AdvancedResultActivity extends AppCompatActivity implements Recycle
             totalResults = jsonObject.getInt("totalResults");
             number = jsonObject.getInt("number");
             if (totalResults == 0)
-                Toast.makeText(this, "Could not find any recipe with that title", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdvancedResultActivity.this, "Could not find any recipe with that title", Toast.LENGTH_SHORT).show();
             else {
                 int n;
                 if (totalResults <= 10)
@@ -70,7 +70,7 @@ public class AdvancedResultActivity extends AppCompatActivity implements Recycle
         }
         Log.i(TAG, "onClickSearch: number " + totalResults);
         if (totalResults > 0) {
-            RecipeAdapter adapter = new RecipeAdapter(this, recipes, this);
+            RecipeAdapter adapter = new RecipeAdapter(AdvancedResultActivity.this, recipes, this);
             Log.i(TAG, "onClickSearch: array size " + recipes.size());
             advancedRecyclerView.setAdapter(adapter);
             advancedRecyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -2,7 +2,6 @@ package com.example.recipebook.helper;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.recipebook.model.Recipe;
 
@@ -46,7 +45,6 @@ public class HttpRequest {
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        // Handle failure
                         Log.e(TAG, "onFailure: Something went wrong");
                         latch.countDown();
                     }
@@ -65,7 +63,7 @@ public class HttpRequest {
         return response;
     }
 
-    public Recipe getRecipeInformation(Context context, Long id) throws InterruptedException, IOException, JSONException {
+    public Recipe getRecipeInformation(Long id) throws InterruptedException, IOException, JSONException {
         client = new OkHttpClient();
         latch = new CountDownLatch(1);
         responseRef = new AtomicReference<>();
@@ -79,7 +77,6 @@ public class HttpRequest {
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        // Handle failure
                         Log.e(TAG, "onFailure: Something went wrong");
                         latch.countDown();
                     }
@@ -133,7 +130,6 @@ public class HttpRequest {
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        // Handle failure
                         Log.e(TAG, "onFailure: Something went wrong");
                         latch.countDown();
                     }

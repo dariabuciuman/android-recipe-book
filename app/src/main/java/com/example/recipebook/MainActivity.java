@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Integer number = 0;
         recipes = new ArrayList<>();
         try {
-            String response = httpRequest.getRecipe(getApplicationContext(), query);
+            String response = httpRequest.getRecipe(MainActivity.this, query);
             JSONObject jsonObject = new JSONObject(response);
             totalResults = jsonObject.getInt("totalResults");
             number = jsonObject.getInt("number");
             if (totalResults == 0)
-                Toast.makeText(this, "Could not find any recipe with that title", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Could not find any recipe with that title", Toast.LENGTH_SHORT).show();
             else {
                 int n;
                 if (totalResults <= 10)
@@ -74,14 +74,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             }
         } catch (JSONException | InterruptedException | IOException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Something went wrong. Try again.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Something went wrong. Try again.", Toast.LENGTH_SHORT).show();
         }
         Log.i(TAG, "onClickSearch: number " + totalResults);
         if (totalResults > 0) {
-            RecipeAdapter adapter = new RecipeAdapter(this, recipes, this);
+            RecipeAdapter adapter = new RecipeAdapter(MainActivity.this, recipes, this);
             Log.i(TAG, "onClickSearch: array size " + recipes.size());
             recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             for (int i = 0; i < recipes.size(); i++) {
                 Log.i(TAG, "onClickSearch: Array " + i + " " + recipes.get(i).getTitle());
             }
@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         View view = getLayoutInflater().inflate(R.layout.dialog_info, null);
         CheckBox checkBox = view.findViewById(R.id.checkBox);
         builder.setTitle("Welcome to your online recipe book!");
-        builder.setMessage("\nThis app allows you to search recipes by word, ingredients or type of dish. " +
-                "Also, you can exclude recipes by intolerances and ingredients.\n\nIf you like a recipe, you " +
-                "can save it on your device, so you can have some recipes even when you don't have an internet connection.");
+        builder.setMessage("\nThis app was made to help you search recipes that you truly like, " +
+                "by allowing you to search recipes by name, but also by preferred " +
+                "ingredients. You can also exclude recipes by intolerances and ingredients.");
         builder.setView(view);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

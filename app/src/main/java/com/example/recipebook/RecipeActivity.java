@@ -3,6 +3,7 @@ package com.example.recipebook;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -18,7 +19,6 @@ import com.example.recipebook.model.Recipe;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class RecipeActivity extends AppCompatActivity {
@@ -26,7 +26,6 @@ public class RecipeActivity extends AppCompatActivity {
     TextView titleTextView, minutesTextView, sourceURL;
     ListView ingredientsListView, stepsListView;
     ArrayAdapter<String> arrayAdapter, arrayAdapter2;
-    ArrayList<Recipe> recipes;
     String activity;
 
     @Override
@@ -44,7 +43,8 @@ public class RecipeActivity extends AppCompatActivity {
         ingredientsListView = findViewById(R.id.ingredientsListView);
         stepsListView = findViewById(R.id.stepsListView);
         sourceURL = findViewById(R.id.URLTextView);
-        getRecipeInformation(getApplicationContext(), id);
+        //sourceURL.setMovementMethod(LinkMovementMethod.getInstance());
+        getRecipeInformation(RecipeActivity.this, id);
         new DownloadImageFromInternet(imageView).execute(image);
     }
 
@@ -59,7 +59,7 @@ public class RecipeActivity extends AppCompatActivity {
     public void getRecipeInformation(Context context, Long id) {
         HttpRequest httpRequest = new HttpRequest();
         try {
-            Recipe recipe = httpRequest.getRecipeInformation(context, id);
+            Recipe recipe = httpRequest.getRecipeInformation(id);
             titleTextView.setText(recipe.getTitle());
             minutesTextView.setText(recipe.getReadyInMinutes() + " min");
             arrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1);
